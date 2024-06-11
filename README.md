@@ -1,5 +1,6 @@
 # Salaried-Ecommerce
 Salaried Ecommerce is a Ecommerce for the salaried
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -24,8 +25,8 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 ## TODO
 
-- [ ] Set Up Tailwind CSS and PostCSS
-- [ ] Set Up prettier and eslint
+- [x] Set Up Tailwind CSS and PostCSS
+- [x] Set Up prettier and eslint
 - [ ] Make it deploy (vercel)
 - [ ] Tidy up build process
 - [ ] Error management (w/ Sentry)
