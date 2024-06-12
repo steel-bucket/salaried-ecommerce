@@ -27,8 +27,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 - [x] Set Up Tailwind CSS and PostCSS
 - [x] Set Up prettier and eslint
-- [ ] Make it deploy (vercel)
-- [ ] Tidy up build process
+- [x] Make it deploy (vercel)
 - [ ] Error management (w/ Sentry)
 - [ ] Analytics (posthog)
 - [ ] Ratelimiting (upstash)
