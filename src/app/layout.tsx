@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { cn } from '@/lib/utils'
 import Navbar from '@/components/Navbar'
+import { ThemeProvider } from '@/components/ThemeProvider'
 
 export const metadata: Metadata = {
     title: 'Salaried MarketPlace',
@@ -14,22 +15,21 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode
 }>) {
-    // const isDarkMode = localStorage.getItem('darkMode') === 'true'
-
-
     return (
-        <html
-            lang="en"
-            className="h-full"
-            // data-theme={isDarkMode ? 'dark' : 'light'}
-        >
+        <html lang="en" className="h-full" suppressHydrationWarning>
             <body className={cn('relative h-full antialiased')}>
-                <Navbar />
-                <main className={cn('relative flex flex-col min-h-screen')}>
-                    <div className={cn('flex-grow flex-1')}>{children}</div>
-                </main>
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                    disableTransitionOnChange
+                >
+                    <Navbar />
+                    <main className={cn('relative flex flex-col min-h-screen')}>
+                        <div className={cn('flex-grow flex-1')}>{children}</div>
+                    </main>
+                </ThemeProvider>
             </body>
         </html>
     )
 }
-
