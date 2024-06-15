@@ -1,124 +1,65 @@
 export const PRODUCT_CATEGORIES = [
     {
-        label: 'UI Kits',
-        value: 'ui_kits' as const,
+        label: 'Monies',
+        value: 'monies' as const,
         featured: [
             {
                 name: 'Editor picks',
                 href: `/products?category=ui_kits`,
-                imageSrc: '/nav/ui-kits/mixed.jpg',
+                imageSrc: '/nav/monies/mixed.jpg',
             },
             {
                 name: 'New Arrivals',
                 href: '/products?category=ui_kits&sort=desc',
-                imageSrc: '/nav/ui-kits/blue.jpg',
+                imageSrc: '/nav/monies/blue.jpg',
             },
             {
                 name: 'Bestsellers',
                 href: '/products?category=ui_kits',
-                imageSrc: '/nav/ui-kits/purple.jpg',
+                imageSrc: '/nav/monies/purple.jpg',
             },
         ],
     },
     {
-        label: 'Icons',
-        value: 'icons' as const,
+        label: 'Ants(what?)',
+        value: 'Ants' as const,
         featured: [
             {
-                name: 'Favorite Icon Picks',
+                name: 'Favorite Ants',
                 href: `/products?category=icons`,
-                imageSrc: '/nav/icons/picks.jpg',
+                imageSrc: '/nav/ants/picks.jpg',
             },
             {
-                name: 'New Arrivals',
-                href: '/products?category=icons&sort=desc',
-                imageSrc: '/nav/icons/new.jpg',
+                name: 'Funny Arrivals',
+                href: '/products?category=ants&sort=desc',
+                imageSrc: '/nav/ants/new.jpg',
             },
             {
-                name: 'Bestselling Icons',
-                href: '/products?category=icons',
-                imageSrc: '/nav/icons/bestsellers.jpg',
+                name: 'Bestselling Ants',
+                href: '/products?category=ants',
+                imageSrc: '/nav/ants/bestsellers.jpg',
             },
         ],
     },
-
-    // {
-    //     label: 'Illustrations',
-    //     value: 'illustrations' as const,
-    //     featured: [
-    //         {
-    //             name: 'Editor picks',
-    //             href: `/products?category=illustrations`,
-    //             imageSrc: '/nav/illustrations/mixed.jpg',
-    //         },
-    //         {
-    //             name: 'New Arrivals',
-    //             href: '/products?category=illustrations&sort=desc',
-    //             imageSrc: '/nav/illustrations/blue.jpg',
-    //         },
-    //         {
-    //             name: 'Bestsellers',
-    //             href: '/products?category=illustrations',
-    //             imageSrc: '/nav/illustrations/purple.jpg',
-    //         },
-    //     ],
-    // },
-    // {
-    //     label: '3D Assets',
-    //     value: '3d_assets' as const,
-    //     featured: [
-    //         {
-    //             name: 'Editor picks',
-    //             href: `/products?category=3d_assets`,
-    //             imageSrc: '/nav/3d-assets/mixed.jpg',
-    //         },
-    //         {
-    //             name: 'New Arrivals',
-    //             href: '/products?category=3d_assets&sort=desc',
-    //             imageSrc: '/nav/3d-assets/blue.jpg',
-    //         },
-    //         {
-    //             name: 'Bestsellers',
-    //             href: '/products?category=3d_assets',
-    //             imageSrc: '/nav/3d-assets/purple.jpg',
-    //         },
-    //     ],
-    // },
-    // {
-    //     label: 'Fonts',
-    //     value: 'fonts' as const,
-    //     featured: [
-    //         {
-    //             name: 'Editor picks',
-    //             href: `/products?category=fonts`,
-    //             imageSrc: '/nav/fonts/mixed.jpg',
-    //         },
-    //         {
-    //             name: 'New Arrivals',
-    //             href: '/products?category=fonts&sort=desc',
-    //             imageSrc: '/nav/fonts/blue.jpg',
-    //         },
-    //         {
-    //             name: 'Bestsellers',
-    //             href: '/products?category=fonts',
-    //             imageSrc: '/nav/fonts/purple.jpg',
-    //         },
-    //     ],
-    // },
-    // {
-    //     label: 'Mockups',
-    //     value: 'mockups' as const,
-    //     featured: [
-    //         {
-    //             name: 'Editor picks',
-    //             href: `/products?category=mockups`,
-    //             imageSrc: '/nav/mockups/mixed.jpg',
-    //         },
-    //         {
-    //             name: 'New Arrivals',
-    //             href: '/products?category=mockups&sort=desc',
-    //             imageSrc: '/nav/mockups/blue.jpg',
-    //         },
-    //     ],
-    // },
+    {
+        label: 'Empty Boxes',
+        value: 'Boxes' as const,
+        featured: [
+            {
+                name: 'Editor picks',
+                href: `/products?category=illustrations`,
+                imageSrc: '/nav/boxes/1.png',
+            },
+            {
+                name: 'New Arrivals',
+                href: '/products?category=illustrations&sort=desc',
+                imageSrc: '/nav/boxes/2.png',
+            },
+            {
+                name: 'Bestsellers',
+                href: '/products?category=illustrations',
+                imageSrc: '/nav/boxes/3.png',
+            },
+        ],
+    }
 ]
