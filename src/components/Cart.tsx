@@ -2,15 +2,20 @@
 import {
     Sheet,
     SheetContent,
+    SheetFooter,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
 } from '@/components/ui/sheet'
 import { ShoppingCart } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
+import { formatPrice } from '@/lib/utils'
+import Link from 'next/link'
+import { buttonVariants } from '@/components/ui/button'
+import Image from 'next/image'
 
 const Cart = () => {
-    const itemCount = 0;
+    const itemCount = 0
     return (
         <Sheet>
             <SheetTrigger className="group -m-2 flex items-center p-2">
@@ -32,16 +37,50 @@ const Cart = () => {
                 </SheetHeader>
                 {itemCount > 0 ? (
                     <>
-                    <div className="flex w-full flex-col pr-6">
-                        cart items
-                    </div>
+                        <div className="flex w-full flex-col pr-6">
+                            cart items
+                        </div>
                         <div className="space-y-4 pr-6">
-                            <Separator/>
+                            <Separator />
+                            <div className="space-y-1.5 pr-6">
+                                <div className="flex">
+                                    <span className="flex-1">Shipping</span>
+                                    <span>Free</span>
+                                </div>
+                                <div className="flex">
+                                    <span className="flex-1">
+                                        Transaction Fee
+                                    </span>
+                                    <span>
+                                        {formatPrice(1, { currency: 'INR' })}
+                                    </span>
+                                </div>
+                            </div>
+                            {/* eslint-disable-next-line react/jsx-no-undef */}
+                            <SheetFooter>
+                                <SheetTrigger>
+                                    <Link
+                                        href="/cart"
+                                        className={buttonVariants({
+                                            className: 'w-full',
+                                        })}
+                                    >
+                                        Proceed to checkout
+                                    </Link>
+                                </SheetTrigger>
+                            </SheetFooter>
                         </div>
                     </>
                 ) : (
-                    <div className="flex-1 flex flex-col justify-center items-center">
-                        <p className="text-gray-500 dark:text-gray-400">
+                    <div className="flex h-full flex-col justify-center space-y-1 items-center">
+                        <div className="h-60 w-60 relative mb-4 text-muted-foreground">
+                            <Image
+                                src="/empty-cart.png"
+                                fill
+                                alt="money"
+                            />
+                        </div>
+                        <p className="text-xl text-gray-500 dark:text-gray-400">
                             Your cart is empty
                         </p>
                     </div>

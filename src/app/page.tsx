@@ -37,7 +37,7 @@ export default function Home() {
                 <div className="py-20 mx-auto text-center flex flex-col items-center max-w-3xl">
                     <h1 className="text-4xl font-bold tracking-tight text-gray-600 dark:text-white sm:text-6xl">
                         A High Quality Marketplace iff you are{' '}
-                        <span className="text-blue-700">Salaried</span>
+                        <span className="text-fuchsia-700">Salaried</span>
                     </h1>
                     <p className="mt-6 text-lg max-w-prose text-muted-foreground">
                         Welcome to Salaried. You are in a totally legitimate
@@ -45,7 +45,7 @@ export default function Home() {
                         not give you your product
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 mt-6">
-                        <Button asChild className="bg-blue-600">
+                        <Button asChild className="bg-fuchsia-600">
                             <Link href="/products">Browse Products</Link>
                         </Button>
                         <Button asChild variant="ghost">
@@ -64,7 +64,7 @@ export default function Home() {
                                 className="text-center md:flex md:items-start md:text-left lg:block lg:text-center"
                             >
                                 <div className="md:flex-shrink-0 flex justify-center">
-                                    <div className="h-16 w-16 flex items-center justify-center rounded-full bg-blue-100 text-blue-900">
+                                    <div className="h-16 w-16 flex items-center justify-center rounded-full bg-fuchsia-100 text-fuchsia-900">
                                         <perk.Icon className="h-1/3 w-1/3" />
                                     </div>
                                 </div>
