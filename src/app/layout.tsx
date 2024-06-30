@@ -3,6 +3,7 @@ import './globals.css'
 import { cn } from '@/lib/utils'
 import Navbar from '@/components/Navbar'
 import { ThemeProvider } from '@/components/ThemeProvider'
+import Providers from '@/components/server/Providers'
 
 export const metadata: Metadata = {
     title: 'Salaried MarketPlace',
@@ -24,10 +25,18 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <Navbar />
-                    <main className={cn('relative flex flex-col min-h-screen')}>
-                        <div className={cn('flex-grow flex-1')}>{children}</div>
-                    </main>
+                    <Providers>
+                        <Navbar />
+                        <main
+                            className={cn(
+                                'relative flex flex-col min-h-screen'
+                            )}
+                        >
+                            <div className={cn('flex-grow flex-1')}>
+                                {children}
+                            </div>
+                        </main>
+                    </Providers>
                 </ThemeProvider>
             </body>
         </html>

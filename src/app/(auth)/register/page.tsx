@@ -12,7 +12,6 @@ import { AuthCredentialsValidator } from '@/lib/accountcredvallidator'
 import { TAuthCredentialsValidator } from '@/lib/accountcredvallidator'
 
 const Page = () => {
-
     const {
         register,
         handleSubmit,
@@ -21,8 +20,8 @@ const Page = () => {
         resolver: zodResolver(AuthCredentialsValidator),
     })
 
-    const onSubmit = ({email,password}: TAuthCredentialsValidator) => {
-
+    const onSubmit = ({ email, password }: TAuthCredentialsValidator) => {
+        //send data to server
     }
 
     return (
