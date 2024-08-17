@@ -5,7 +5,6 @@ import * as trpcExpress from '@trpc/server/adapters/express'
 import { appRouter } from './trpc'
 
 const app = express()
-// const PORT = 3000 || process.env.PORT
 const PORT = Number(process.env.PORT) || 3000
 
 const createContext = ({ req, res }: trpcExpress.CreateExpressContextOptions) => ({

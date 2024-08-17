@@ -94,7 +94,7 @@ const Page = () => {
                                     placeholder="Password"
                                 />
                                 {errors?.password && (
-                                    <p className="text-sm text-fuchsia-500">
+                                    <p className="text-sm text-red-500">
                                         {errors.password.message}
                                     </p>
                                 )}
