@@ -29,7 +29,7 @@ export default function RootLayout({
                         <Navbar />
                         <main
                             className={cn(
-                                'relative flex flex-col min-h-screen'
+                                'relative flex flex-col min-h-max'
                             )}
                         >
                             <div className={cn('flex-grow flex-1')}>
