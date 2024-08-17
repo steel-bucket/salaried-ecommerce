@@ -2,14 +2,19 @@
 import { Icons } from '@/components/Icons'
 import Link from 'next/link'
 import { Button, buttonVariants } from '@/components/ui/button'
-import { MoveUpRight } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { cn } from '@/lib/utils'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { AuthCredentialsValidator } from '@/lib/accountcredvallidator'
-import { TAuthCredentialsValidator } from '@/lib/accountcredvallidator'
+import {
+    AuthCredentialsValidator,
+    TAuthCredentialsValidator,
+} from '@/lib/accountcredvallidator'
+import { trpc } from '@/server/trpc/client'
+import { toast } from 'sonner'
+import { ZodError } from 'zod'
+import { useRouter } from 'next/navigation'
 
 const Page = () => {
     const {
@@ -20,67 +25,96 @@ const Page = () => {
         resolver: zodResolver(AuthCredentialsValidator),
     })
 
-    const onSubmit = ({ email, password }: TAuthCredentialsValidator) => {
-        //send data to server
+    const router = useRouter()
+
+    const { mutate, isLoading } = trpc.auth.createPayloadUser.useMutation({
+        onError: (err) => {
+            if (err.data?.code === 'CONFLICT') {
+                toast.error('This email is already in use. Sign in instead?')
+                return
+            }
+            if (err instanceof ZodError) {
+                toast.error(err.issues[0].message)
+                return
+            }
+            toast.error('Something went wrong. Please try again.')
+        },
+        onSuccess: ({ sentToEmail }) => {
+            toast.success(`Verification email sent to ${sentToEmail}.`)
+            // router.push('/verify-email?to=' + sentToEmail)
+        },
+    })
+
+    const onSubmit = (data: TAuthCredentialsValidator) => {
+        mutate(data)
     }
 
     return (
-        <>
-            <div className="container relative flex flex-col pt-20 items-center justify-center lg:px-0 text-gray-600 dark:text-gray-300">
-                <div className="flex flex-col w-full justify-center space-y-6 sm:w-[350px] lg:w-[700px] mx-8">
-                    <div className="flex flex-col items-center space-y-2 text-center">
-                        <Icons.logo className="h-52 w-52"></Icons.logo>
-                        <h1 className="h1 font-bold text-2xl">Sign Up</h1>
-
-                        <div className="grid gap-6 w-2/3">
-                            <form onSubmit={handleSubmit(onSubmit)}>
-                                <div className="grid gap-2 w-full">
-                                    <div className="grid gap-1 py-4 w-full">
-                                        <Label htmlFor="email" className="p-3">
-                                            {' '}
-                                            Email
-                                        </Label>
-                                        <Input
-                                            className={cn({
-                                                'focus-visible:ring-fuchsia-500':
-                                                    errors.email,
-                                            })}
-                                            placeholder="salary@salary.com"
-                                            {...register('email')}
-                                        />
-                                    </div>
-                                    <div className="grid gap-1 py-2">
-                                        <Label htmlFor="password">
-                                            {' '}
-                                            Password
-                                        </Label>
-                                        <Input
-                                            className={cn({
-                                                'focus-visible:ring-fuchsia-500':
-                                                    errors.password,
-                                            })}
-                                            placeholder="password123@"
-                                            {...register('password')}
-                                        />
-                                    </div>
-                                    <Button>Sign Up</Button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <Link
-                        href="signin"
-                        className={`${buttonVariants({
-                            variant: 'link',
-                            size: 'lg',
-                        })}`}
-                    >
-                        Already have an account? Sign in
-                        <MoveUpRight className="h-4 w-4 p-0.5" />
-                    </Link>
+        <div className="container relative flex pt-20 flex-col items-center justify-center lg:px-0">
+            <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+                <div className="flex flex-col items-center space-y-2 text-center">
+                    <Icons.logo className="h-20 w-20" />
+                    <h1 className="text-2xl font-semibold tracking-tight">
+                        Create an account
+                    </h1>
                 </div>
+                <div className="grid gap-6">
+                    <form
+                        onSubmit={handleSubmit((data, event) => {
+                            event?.preventDefault()
+                            onSubmit(data)
+                        })}
+                    >
+                        <div className="grid gap-2">
+                            <div className="grid gap-1 py-2">
+                                <Label htmlFor="email">Email</Label>
+                                <Input
+                                    {...register('email')}
+                                    className={cn({
+                                        'focus-visible:ring-red-500':
+                                            errors.email,
+                                    })}
+                                    placeholder="you@example.com"
+                                />
+                                {errors?.email && (
+                                    <p className="text-sm text-red-500">
+                                        {errors.email.message}
+                                    </p>
+                                )}
+                            </div>
+                            <div className="grid gap-1 py-2">
+                                <Label htmlFor="password">Password</Label>
+                                <Input
+                                    {...register('password')}
+                                    type="password"
+                                    className={cn({
+                                        'focus-visible:ring-red-500':
+                                            errors.password,
+                                    })}
+                                    placeholder="Password"
+                                />
+                                {errors?.password && (
+                                    <p className="text-sm text-fuchsia-500">
+                                        {errors.password.message}
+                                    </p>
+                                )}
+                            </div>
+                            <Button className="bg-fuchsia-600">Sign up</Button>
+                        </div>
+                    </form>
+                </div>
+                <Link
+                    className={buttonVariants({
+                        variant: 'link',
+                        className: 'gap-1.5',
+                    })}
+                    href="/sign-in"
+                >
+                    Already have an account? Sign-in
+                </Link>
             </div>
-        </>
+        </div>
     )
 }
+
 export default Page

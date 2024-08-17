@@ -1,10 +1,14 @@
 import { publicProcedure, router } from './trpc'
+import { authRouter } from './routers/authrouter'
 
 export const appRouter = router({
-    testAPIRouter: publicProcedure.query(() => {
-        return 'Hello World'
-    }),
-})
+    auth: authRouter,
 
+    // testAPIRouter: publicProcedure.query(() => {
+    //     return 'Hello World'
+    // }),
+
+    // payment:paymentRouter
+})
 
 export type AppRouter = typeof appRouter
