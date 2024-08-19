@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { PRODUCT_CATEGORIES } from '@/config/webConfig'
-import NavItem from '@/components/NavItem'
+import NavItem from './NavItem'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 
 export default function NavItems() {

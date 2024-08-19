@@ -14,10 +14,16 @@ import {
 import { trpc } from '@/server/trpc/client'
 import { toast } from 'sonner'
 import { ZodError } from 'zod'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Loader2 } from 'lucide-react'
+import { Suspense } from 'react'
 
 const Page = () => {
+    const searchParams = useSearchParams()
+    const isSeller = searchParams.get('as') === 'seller'
+    const router = useRouter()
+    const origin = searchParams.get('origin')
+
     const {
         register,
         handleSubmit,
@@ -26,12 +32,23 @@ const Page = () => {
         resolver: zodResolver(AuthCredentialsValidator),
     })
 
-    const router = useRouter()
-
-    const { mutate, isLoading } = trpc.auth.createPayloadUser.useMutation({
+    const { mutate: login, isLoading } = trpc.auth.login.useMutation({
+        onSuccess: () => {
+            toast.success("Yayyyy...... You're Logged In")
+            router.refresh()
+            if (origin) {
+                router.push(`/${origin}`)
+                return
+            }
+            if (isSeller) {
+                router.push('/sell')
+                return
+            }
+            router.push('/')
+        },
         onError: (err) => {
-            if (err.data?.code === 'CONFLICT') {
-                toast.error('This email is already in use.')
+            if (err.data?.code === 'UNAUTHORIZED') {
+                toast.error('Invalid Email or Password')
                 return
             }
             if (err instanceof ZodError) {
@@ -40,14 +57,17 @@ const Page = () => {
             }
             toast.error('Something went wrong. Please try again.')
         },
-        onSuccess: ({ sentToEmail }) => {
-            toast.success(`Verification email sent to ${sentToEmail}.`)
-            router.push('/verify?email=' + sentToEmail)
-        },
     })
 
     const onSubmit = (data: TAuthCredentialsValidator) => {
-        mutate(data)
+        login(data)
+    }
+
+    const ContinueAsCustomer = () => {
+        router.replace('/login', undefined)
+    }
+    const ContinueAsSeller = () => {
+        router.push('?as=customer')
     }
 
     return (
@@ -56,7 +76,7 @@ const Page = () => {
                 <div className="flex flex-col items-center space-y-2 text-center">
                     <Icons.logo className="h-20 w-20" />
                     <h1 className="text-2xl font-semibold tracking-tight">
-                        Create an account
+                        Log in to your {isSeller ? 'seller' : ''} Account
                     </h1>
                 </div>
                 <div className="grid gap-6">
@@ -100,11 +120,14 @@ const Page = () => {
                                     </p>
                                 )}
                             </div>
-                            <Button className="bg-fuchsia-600" disabled={isLoading}>
+                            <Button
+                                className="bg-fuchsia-600"
+                                disabled={isLoading}
+                            >
                                 {isLoading ? (
                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                 ) : (
-                                    'Sign up'
+                                    'Sign in'
                                 )}
                             </Button>
                         </div>
@@ -115,13 +138,56 @@ const Page = () => {
                         variant: 'link',
                         className: 'gap-1.5',
                     })}
-                    href="/login"
+                    href="/register"
                 >
-                    Already have an account? Sign-in
+                    Don&apos;t have an Account, Sign Up
                 </Link>
+
+                <div className="relative">
+                    <div
+                        aria-hidden="true"
+                        className="absolute inset-0 flex items-center"
+                    >
+                        <span className="w-full border-t"></span>
+                    </div>
+                    <div className="relative flex justify-center text-xs uppercase">
+                        <span className="bg-background px-2 text-muted-foreground">
+                            or
+                        </span>
+                    </div>
+                </div>
+                {isSeller ? (
+                    <Button
+                        onClick={ContinueAsCustomer}
+                        variant="secondary"
+                        disabled={isLoading}
+                    >
+                        Continue as Customer
+                    </Button>
+                ) : (
+                    <Button
+                        onClick={ContinueAsSeller}
+                        variant="secondary"
+                        disabled={isLoading}
+                    >
+                        Continue as Seller
+                    </Button>
+                )}
             </div>
         </div>
     )
 }
 
-export default Page
+// eslint-disable-next-line react/display-name
+export default () => (
+    <Suspense
+        fallback={
+            <div>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <div>Loading...</div>
+            </div>
+        }
+    >
+        <Page />
+    </Suspense>
+)

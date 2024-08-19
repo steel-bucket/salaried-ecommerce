@@ -2,11 +2,11 @@
 import MaxWidthWrapper from '@/components/MaxWidthWrapper'
 import Link from 'next/link'
 import { Icons } from '@/components/Icons'
-import NavItems from '@/components/NavItems'
+import NavItems from './NavItems'
 import { useTheme } from 'next-themes'
 import { buttonVariants } from '@/components/ui/button'
 import Cart from '@/components/Cart'
-import NavAuth from '@/components/NavAuth'
+import NavAuth from './NavAuth'
 
 const Navbar = () => {
     const { theme, setTheme } = useTheme()

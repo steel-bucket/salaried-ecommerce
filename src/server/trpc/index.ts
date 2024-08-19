@@ -3,11 +3,6 @@ import { authRouter } from './routers/authrouter'
 
 export const appRouter = router({
     auth: authRouter,
-
-    // testAPIRouter: publicProcedure.query(() => {
-    //     return 'Hello World'
-    // }),
-
     // payment:paymentRouter
 })
 
