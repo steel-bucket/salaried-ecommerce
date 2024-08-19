@@ -35,7 +35,7 @@ export default buildConfig({
         url: process.env.MONGO_URL!,
     }),
     csrf: [
-        "http://localhost:3000",
+        process.env.NEXT_PUBLIC_SERVER_URL || "",
     ],
     typescript: {
         outputFile: path.resolve(__dirname, '/payload-types.ts'),
