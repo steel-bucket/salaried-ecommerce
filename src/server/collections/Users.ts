@@ -6,29 +6,15 @@ export const Users: CollectionConfig = {
         verify: {
             generateEmailHTML: ({ token }) => {
                 return `
-        <div>
-            <h1>Verify Your Email</h1>
-            <p>Click the link below to verify your email address</p>
-<!--            <a href="${process.env.WEB_URL}/verify-email?token=${token}">Verify Email</a>-->
-        </div>
+            <a href="${process.env.NEXT_PUBLIC_SERVER_URL}/verify?token=${token}">Verify Email</a>
+<!--        <div>-->
+<!--            <h1>Verify Your Email</h1>-->
+<!--            <p>Click the link below to verify your email address</p>-->
+<!--        </div>-->
 `
             },
         },
     },
-
-    //     auth: {
-    //         verify: {
-    //             generateEmailHTML: ({ req, token, user }) => {
-    //                 return `
-    //         <div>
-    //             <h1>Verify Your Email</h1>
-    //             <p>Click the link below to verify your email address</p>
-    //             <a href="${process.env.WEB_URL}/verify-email?token=${token}">Verify Email</a>
-    //         </div>
-    // `
-    //             },
-    //         },
-    //     },
     access: {
         read: () => true,
         create: () => true,

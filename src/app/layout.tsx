@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { cn } from '@/lib/utils'
-import Navbar from '@/components/Navbar'
-import { ThemeProvider } from '@/components/ThemeProvider'
+import Navbar from '@/components/Navbar/Navbar'
 import Providers from '@/components/server/Providers'
+import { Toaster } from 'sonner'
 
 export const metadata: Metadata = {
     title: 'Salaried MarketPlace',
@@ -19,25 +19,13 @@ export default function RootLayout({
     return (
         <html lang="en" className="h-full" suppressHydrationWarning>
             <body className={cn('relative h-full antialiased')}>
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                    disableTransitionOnChange
-                >
-                    <Providers>
-                        <Navbar />
-                        <main
-                            className={cn(
-                                'relative flex flex-col min-h-max'
-                            )}
-                        >
-                            <div className={cn('flex-grow flex-1')}>
-                                {children}
-                            </div>
-                        </main>
-                    </Providers>
-                </ThemeProvider>
+                <Providers>
+                    <Navbar />
+                    <main className={cn('relative flex flex-col min-h-max')}>
+                        <div className={cn('flex-grow flex-1')}>{children}</div>
+                    </main>
+                </Providers>
+                <Toaster position="top-center" richColors />
             </body>
         </html>
     )
