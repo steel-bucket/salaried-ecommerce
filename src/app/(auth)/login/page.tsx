@@ -16,6 +16,7 @@ import { toast } from 'sonner'
 import { ZodError } from 'zod'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Loader2 } from 'lucide-react'
+import { Suspense } from 'react'
 
 const Page = () => {
     const searchParams = useSearchParams()
@@ -177,4 +178,16 @@ const Page = () => {
     )
 }
 
-export default Page
+// eslint-disable-next-line react/display-name
+export default () => (
+    <Suspense
+        fallback={
+            <div>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <div>Loading...</div>
+            </div>
+        }
+    >
+        <Page />
+    </Suspense>
+)
