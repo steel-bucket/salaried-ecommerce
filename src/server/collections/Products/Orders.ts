@@ -1,7 +1,8 @@
 import { Access, CollectionConfig } from 'payload/types'
 
 const yourOwn: Access = ({ req: { user } }) => {
-    if (user?.role === 'admin') return true
+    if (user.role === 'admin') return true
+
     return {
         user: {
             equals: user?.id,
@@ -9,17 +10,18 @@ const yourOwn: Access = ({ req: { user } }) => {
     }
 }
 
-export const Order: CollectionConfig = {
+export const Orders: CollectionConfig = {
     slug: 'orders',
     admin: {
         useAsTitle: 'Your Orders',
-        description: 'A summary of all your orders',
+        description:
+            'A summary of all your orders.',
     },
     access: {
         read: yourOwn,
-        update:({req})=>req.user.role === "admin",
-        delete:({req})=>req.user.role === "admin",
-        create:({req})=>req.user.role === "admin",
+        update: ({ req }) => req.user.role === 'admin',
+        delete: ({ req }) => req.user.role === 'admin',
+        create: ({ req }) => req.user.role === 'admin',
     },
     fields: [
         {
@@ -38,10 +40,10 @@ export const Order: CollectionConfig = {
         {
             name: 'user',
             type: 'relationship',
-            relationTo: 'users',
             admin: {
                 hidden: true,
             },
+            relationTo: 'users',
             required: true,
         },
         {

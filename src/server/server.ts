@@ -35,14 +35,13 @@ const start = async () => {
         })
     )
     app.use((req, res) => nextHandler(req, res))
-
     nextApp.prepare().then(() => {
         payload.logger.info(
             `hahaha server is running on http://localhost:${PORT}`
         )
         app.listen(PORT, async () => {
             payload.logger.info(
-                `Next JS server URL ${process.env.NEXT_PUBLIC_BACKEND_URL})`
+                `Next JS server URL ${process.env.NEXT_PUBLIC_SERVER_URL}`
             )
         })
     })

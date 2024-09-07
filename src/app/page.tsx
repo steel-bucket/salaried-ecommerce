@@ -2,6 +2,7 @@ import MaxWidthWrapper from '@/components/MaxWidthWrapper'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { Activity, BadgeCheck, BadgeDollarSign, Truck } from 'lucide-react'
+import ProductReel from '@/components/Products/ProductReel'
 
 export default function Home() {
     const perks = [
@@ -33,6 +34,7 @@ export default function Home() {
     ]
     return (
         <>
+            {/* ADD CAROUSEL*/}
             <MaxWidthWrapper>
                 <div className="py-20 mx-auto text-center flex flex-col items-center max-w-3xl">
                     <h1 className="text-4xl font-bold tracking-tight text-gray-600 dark:text-white sm:text-6xl">
@@ -53,6 +55,16 @@ export default function Home() {
                         </Button>
                     </div>
                 </div>
+            </MaxWidthWrapper>
+            <MaxWidthWrapper>
+                <ProductReel
+                    title="New Arrivals"
+                    href="/products"
+                    query={{
+                        limit: 4,
+                        sort: 'dsc',
+                    }}
+                />
             </MaxWidthWrapper>
 
             <section className="bg-gray-50 dark:bg-black">

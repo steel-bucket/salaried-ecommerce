@@ -2,7 +2,7 @@ import MaxWidthWrapper from '@/components/MaxWidthWrapper'
 import Link from 'next/link'
 import { Icons } from '@/components/Icons'
 import NavItems from './NavItems'
-import Cart from '@/components/Cart'
+import Cart from '@/components/Cart/Cart'
 import NavAuth from './NavAuth'
 import NavThemeButton from './NavThemeButtton'
 
