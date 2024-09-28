@@ -5,12 +5,12 @@ import { ImageIcon, X } from 'lucide-react'
 import { PRODUCT_CATEGORIES } from '@/config/webConfig'
 import { useCart } from '@/hooks/useCart'
 
-const CartItem = ({ product }: { product: Product }) => {
+const CartItem = ({ product, count }: { product: Product; count?: number }) => {
     // @ts-ignore
     const { image } = product.images[0]
     const { removeItem } = useCart()
     const label = PRODUCT_CATEGORIES.find(
-        ({ value }) => value === product?.category
+        ({ value }) => value === product?.category,
     )?.label
 
     return (
@@ -29,31 +29,37 @@ const CartItem = ({ product }: { product: Product }) => {
                             <div className="flex h-full items-center justify-center bg-secondary">
                                 <ImageIcon
                                     aria-hidden="true"
-                                    className="h-4 w-4 text-muted-foreground "
+                                    className="h-4 w-4 text-muted-foreground"
                                 />
                             </div>
                         )}
                     </div>
-                    <div className="flex flex-row">
-                        <div className="flex flex-col self-start">
-                            <span className="line-clamp-1 text-sm font-medium mb-1">
-                                {product.name}
-                            </span>
-                            <span className="line-clamp-1 text-xs capitalize text-muted-foreground">
-                                {label}
+                    <div className="flex flex-col">
+                        <span className="line-clamp-1 text-sm font-medium mb-1">
+                            {product.name}
+                        </span>
+                        <span className="line-clamp-1 text-xs capitalize text-muted-foreground">
+                            {label}
+                        </span>
+                        <div className="flex flex-col space-y-1 font-medium">
+                            <span className="mr-auto line-clamp-1 text-sm">
+                                {formatPrice(product.price)}
                             </span>
                         </div>
-                        <span className="self-end mt-4 text-xs text-muted-foreground">
-                            <button
-                                onClick={() => {
-                                    removeItem(product.id)
-                                }}
-                            >
-                                <X className="w-3 h-4" />
-                            </button>
-                        </span>
                     </div>
+                    <span className="ml-auto flex flex-col self-end text-sm text-muted-foreground font-light">
+                        {count != 1 ? <div className="ml-auto">x{count}</div> : null}
+                    </span>
+                    <div className="auto"></div>
                 </div>
+                <button
+                    onClick={() => {
+                        removeItem(product.id)
+                    }}
+                    className="mt-4 text-xs text-muted-foreground"
+                >
+                    <X className="w-3 h-4" />
+                </button>
             </div>
         </div>
     )

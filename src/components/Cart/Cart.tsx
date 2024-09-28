@@ -60,6 +60,11 @@ const Cart = () => {
                                     <CartItem
                                         key={product.id}
                                         product={product}
+                                        count={
+                                            items.filter(
+                                                (x) => x.product == product
+                                            ).length
+                                        }
                                     />
                                 ))}
                             </ScrollArea>
