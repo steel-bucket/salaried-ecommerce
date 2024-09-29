@@ -16,7 +16,7 @@ const CartItem = ({ product, count }: { product: Product; count?: number }) => {
     return (
         <div className={'space-y-3 py-2'}>
             <div className="flex items-start justify-between gap-4">
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4 flex-grow">
                     <div className="relative aspect-square h-16 w-16 min-w-fit overflow-hidden rounded-lg">
                         {typeof image !== 'string' && image.url ? (
                             <Image
@@ -34,7 +34,7 @@ const CartItem = ({ product, count }: { product: Product; count?: number }) => {
                             </div>
                         )}
                     </div>
-                    <div className="flex flex-col">
+                    <div className="flex flex-col flex-grow">
                         <span className="line-clamp-1 text-sm font-medium mb-1">
                             {product.name}
                         </span>
@@ -47,9 +47,11 @@ const CartItem = ({ product, count }: { product: Product; count?: number }) => {
                             </span>
                         </div>
                     </div>
-                    <span className="ml-auto flex flex-col self-end text-sm text-muted-foreground font-light">
-                        {count != 1 ? <div className="ml-auto">x{count}</div> : null}
+
+                    <span className="ml-auto flex flex-col items-end self-end text-sm text-muted-foreground font-light">
+                        {count != 1 ? <div className="mr-0">x{count}</div> : null}
                     </span>
+
                     <div className="auto"></div>
                 </div>
                 <button

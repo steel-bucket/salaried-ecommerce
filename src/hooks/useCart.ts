@@ -2,11 +2,11 @@ import { Product } from '@/config/payload-types'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
-export type CartItem = {
+export type CartItemType = {
     product: Product
 }
 type CartState = {
-    items: CartItem[]
+    items: CartItemType[]
     addItem: (product: Product) => void
     removeItem: (id: string) => void
     clearCart: () => void

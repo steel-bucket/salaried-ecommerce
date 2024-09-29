@@ -16,7 +16,9 @@ import Image from 'next/image'
 import { useCart } from '@/hooks/useCart'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import CartItem from '@/components/Cart/CartItem'
+import { CartItemType } from '@/hooks/useCart'
 import { useEffect, useState } from 'react'
+import { Product } from '@/config/payload-types'
 
 const Cart = () => {
     const { items } = useCart()
@@ -31,6 +33,18 @@ const Cart = () => {
         (total, { product }) => total + product.price,
         0
     )
+
+    function removeDuplicates(items: CartItemType[]): CartItemType[] {
+        const uniqueItems: { [key: string]: boolean } = {}
+        const result: CartItemType[] = []
+        for (const item of items) {
+            if (!uniqueItems[item.product.id]) {
+                uniqueItems[item.product.id] = true
+                result.push(item)
+            }
+        }
+        return result
+    }
 
     const fee = 1
     return (
@@ -56,13 +70,14 @@ const Cart = () => {
                     <>
                         <div className="flex w-full flex-col pr-6">
                             <ScrollArea>
-                                {items.map(({ product }) => (
+                                {removeDuplicates(items).map(({ product }) => (
                                     <CartItem
                                         key={product.id}
                                         product={product}
                                         count={
                                             items.filter(
-                                                (x) => x.product == product
+                                                (x) =>
+                                                    x.product?.id == product?.id
                                             ).length
                                         }
                                     />
