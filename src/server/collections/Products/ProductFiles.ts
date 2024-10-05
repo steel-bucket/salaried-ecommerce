@@ -2,7 +2,6 @@ import { Access, CollectionConfig } from 'payload/types'
 import { BeforeChangeHook } from 'payload/dist/collections/config/types'
 import { User } from '../../../config/payload-types'
 
-
 const addUser: BeforeChangeHook = ({ req, data }) => {
     const user = req.user as User | null
     return { ...data, user: user?.id }
@@ -24,9 +23,7 @@ const yourOwnAndPurchased: Access = async ({ req }) => {
         },
     })
 
-    const ownProductFileIds = products
-        .map((prod) => prod.productFiles)
-        .flat()
+    const ownProductFileIds = products.map((prod) => prod.productFiles).flat()
 
     const { docs: orders } = await req.payload.find({
         collection: 'orders',
@@ -46,8 +43,10 @@ const yourOwnAndPurchased: Access = async ({ req }) => {
                     return req.payload.logger.error(
                         'Search depth not sufficient to find purchased file IDs'
                     )
-                if(typeof product.productFiles === 'string') return product.productFiles;
-                else { // @ts-ignore
+                if (typeof product.productFiles === 'string')
+                    return product.productFiles
+                else {
+                    // @ts-ignore
                     return product.productFiles.id
                 }
             })
@@ -57,10 +56,7 @@ const yourOwnAndPurchased: Access = async ({ req }) => {
 
     return {
         id: {
-            in: [
-                ...ownProductFileIds,
-                ...purchasedProductFileIds,
-            ],
+            in: [...ownProductFileIds, ...purchasedProductFileIds],
         },
     }
 }
@@ -81,11 +77,7 @@ export const ProductFiles: CollectionConfig = {
     upload: {
         staticURL: '/productFiles',
         staticDir: 'productFiles',
-        mimeTypes: [
-            'image/*',
-            'font/*',
-            'application/postscript',
-        ],
+        mimeTypes: ['image/*', 'font/*', 'application/postscript'],
     },
     fields: [
         {

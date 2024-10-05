@@ -52,6 +52,7 @@
     "react-query^4.36.1": "link:@tanstack/react-query^4.36.1",
     "sharp": "0.32.6",
     "sonner": "^1.5.0",
+    "stripe": "^17.0.0",
     "swiper": "^11.1.11",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",

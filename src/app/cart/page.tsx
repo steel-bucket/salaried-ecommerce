@@ -22,13 +22,18 @@ const Page = () => {
         0
     )
     const fee = 1
+
+
     const { mutate: createCheckoutSession, isLoading } =
         trpc.payment.createSession.useMutation({
             onSuccess: ({ url }) => {
+                console.log("Success " + url + " . . . . ")
                 if (url) router.push(url)
             },
         })
+
     const productIds = items.map(({ product }) => product.id)
+
 
     function removeDuplicates(items: CartItemType[]): CartItemType[] {
         const uniqueItems: { [key: string]: boolean } = {}
