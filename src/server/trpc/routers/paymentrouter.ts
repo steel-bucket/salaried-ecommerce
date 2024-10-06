@@ -1,9 +1,5 @@
 import { z } from 'zod'
-import {
-    privateProcedure,
-    publicProcedure,
-    router,
-} from '../trpc'
+import { privateProcedure, router } from '../trpc'
 import { TRPCError } from '@trpc/server'
 import { getPayloadClient } from '../../getpayload'
 import { stripe } from '../../../lib/stripe'
@@ -51,7 +47,6 @@ export const paymentrouter = router({
                 Boolean(prod.priceId)
             )
 
-
             const order = await payload.create({
                 collection: 'orders',
                 data: {
@@ -60,6 +55,10 @@ export const paymentrouter = router({
                     user: user.id,
                 },
             })
+            const { docs: orders } = await payload.find({
+                collection: 'orders',
+            })
+            console.log(orders)
 
             const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] =
                 []
@@ -71,7 +70,6 @@ export const paymentrouter = router({
                 })
             })
 
-
             line_items.push({
                 price: 'price_1Q66hqP69aOrZAXYZ3k9NobY',
                 quantity: 1,
@@ -81,18 +79,17 @@ export const paymentrouter = router({
             })
 
             try {
-                const stripeSession =
-                    await stripe.checkout.sessions.create({
-                        success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/thank-you?orderId=${order.id}`,
-                        cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/cart`,
-                        payment_method_types: ['card',],
-                        mode: 'payment',
-                        metadata: {
-                            userId: user.id,
-                            orderId: order.id,
-                        },
-                        line_items,
-                    })
+                const stripeSession = await stripe.checkout.sessions.create({
+                    success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/orderplaced?orderId=${order.id}`,
+                    cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/cart`,
+                    payment_method_types: ['card'],
+                    mode: 'payment',
+                    metadata: {
+                        userId: user.id,
+                        orderId: order.id,
+                    },
+                    line_items,
+                })
 
                 return { url: stripeSession.url }
             } catch (err) {
