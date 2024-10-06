@@ -4,7 +4,7 @@ import { Check, ChevronRight, ShoppingCart } from 'lucide-react'
 import { getPayloadClient } from '@/server/getpayload'
 import { notFound } from 'next/navigation'
 import { formatPrice } from '@/lib/utils'
-import { Product } from '@/config/payload-types'
+import { Order, Product } from '@/config/payload-types'
 import { PRODUCT_CATEGORIES } from '@/config/webConfig'
 import ProductImageSlider from '@/components/Products/ProductImageSlider'
 import ProductReel from '@/components/Products/ProductReel'
@@ -121,7 +121,7 @@ const Page = async ({ params }: PageProps) => {
 
                     <div className="mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start">
                         <div className="mt-10">
-                            <AddToCartButton product={product}/>
+                            <AddToCartButton product={product} />
                         </div>
                         <div className="mt-6 text-center ">
                             <div className="group inline-flex text-sm text">
