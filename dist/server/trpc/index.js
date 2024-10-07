@@ -64,9 +64,10 @@ var authrouter_1 = require("./routers/authrouter");
 var zod_1 = require("zod");
 var queryvalidator_1 = require("../../lib/queryvalidator");
 var getpayload_1 = require("../getpayload");
+var paymentrouter_1 = require("./routers/paymentrouter");
 exports.appRouter = (0, trpc_1.router)({
     auth: authrouter_1.authRouter,
-    // payment:paymentRouter
+    payment: paymentrouter_1.paymentrouter,
     getInfiniteProducts: trpc_1.publicProcedure
         .input(zod_1.z.object({
         limit: zod_1.z.number().min(1).max(100),
