@@ -10,6 +10,7 @@ const nextConfig = {
                 port: '3000',
                 protocol: 'http',
             },
+
         ],
     },
     distDir: 'build',
