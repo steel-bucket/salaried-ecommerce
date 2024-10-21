@@ -21,66 +21,129 @@ export const PRODUCT_CATEGORIES = [
         ],
     },
     {
-        label: 'Monies',
-        value: 'monies' as const,
+        label: 'Keyboards',
+        value: 'keyboards' as const,
         featured: [
             {
                 name: 'Editor picks',
-                href: `/products?category=monies`,
-                imageSrc: '/nav/monies/mixed.jpg',
+                href: '/products?category=keyboards',
+                imageSrc: '/nav/keyboards/img.png',
             },
             {
                 name: 'New Arrivals',
-                href: '/products?category=monies&sort=desc',
-                imageSrc: '/nav/monies/blue.jpg',
+                href: '/products?category=keyboards&sort=desc',
+                imageSrc: '/nav/keyboards/img_1.png',
             },
             {
                 name: 'Bestsellers',
-                href: '/products?category=monies',
-                imageSrc: '/nav/monies/purple.jpg',
+                href: '/products?category=keyboards',
+                imageSrc: '/nav/keyboards/img_2.png',
             },
         ],
     },
     {
-        label: 'Ants(what?)',
-        value: 'ants' as const,
+        label: 'Headphones',
+        value: 'headphones' as const,
         featured: [
             {
-                name: 'Favorite Ants',
-                href: `/products?category=ants`,
-                imageSrc: '/nav/ants/picks.jpg',
+                name: 'Editor picks',
+                href: '/products?category=headphones',
+                imageSrc: '/nav/headphones/img.png',
             },
             {
-                name: 'Funny Arrivals',
-                href: '/products?category=ants&sort=desc',
-                imageSrc: '/nav/ants/new.jpg',
+                name: 'New Arrivals',
+                href: '/products?category=headphones&sort=desc',
+                imageSrc: '/nav/headphones/img_1.png',
             },
             {
-                name: 'Bestselling Ants',
-                href: '/products?category=ants',
-                imageSrc: '/nav/ants/bestsellers.jpg',
+                name: 'Bestsellers',
+                href: '/products?category=headphones',
+                imageSrc: '/nav/headphones/img_2.png',
             },
         ],
     },
     {
-        label: 'Empty Boxes',
-        value: 'boxes' as const,
+        label: 'Mice',
+        value: 'mice' as const,
         featured: [
             {
                 name: 'Editor picks',
-                href: `/products?category=boxes`,
-                imageSrc: '/nav/boxes/1.png',
+                href: '/products?category=mice',
+                imageSrc: '/nav/mice/img.png',
             },
             {
                 name: 'New Arrivals',
-                href: '/products?category=boxes&sort=desc',
-                imageSrc: '/nav/boxes/2.png',
+                href: '/products?category=mice&sort=desc',
+                imageSrc: '/nav/mice/img_1.png',
             },
             {
                 name: 'Bestsellers',
-                href: '/products?category=boxes',
-                imageSrc: '/nav/boxes/3.png',
+                href: '/products?category=mice',
+                imageSrc: '/nav/mice/img_2.png',
             },
         ],
-    }
+    },
+    {
+        label: 'Monitors',
+        value: 'monitors' as const,
+        featured: [
+            {
+                name: 'Editor picks',
+                href: '/products?category=monitors',
+                imageSrc: '/nav/monitors/img.png',
+            },
+            {
+                name: 'New Arrivals',
+                href: '/products?category=monitors&sort=desc',
+                imageSrc: '/nav/monitors/img_1.png',
+            },
+            {
+                name: 'Bestsellers',
+                href: '/products?category=monitors',
+                imageSrc: '/nav/monitors/img_2.png',
+            },
+        ],
+    },
+    {
+        label: 'Chairs',
+        value: 'chairs' as const,
+        featured: [
+            {
+                name: 'Editor picks',
+                href: '/products?category=chairs',
+                imageSrc: '/nav/chairs/img.png',
+            },
+            {
+                name: 'New Arrivals',
+                href: '/products?category=chairs&sort=desc',
+                imageSrc: '/nav/chairs/img_1.png',
+            },
+            {
+                name: 'Bestsellers',
+                href: '/products?category=chairs',
+                imageSrc: '/nav/chairs/img_2.png',
+            },
+        ],
+    },
+    {
+        label: 'Desks',
+        value: 'desks' as const,
+        featured: [
+            {
+                name: 'Editor picks',
+                href: '/products?category=desks',
+                imageSrc: '/nav/desks/img.png',
+            },
+            {
+                name: 'New Arrivals',
+                href: '/products?category=desks&sort=desc',
+                imageSrc: '/nav/desks/img_1.png',
+            },
+            {
+                name: 'Bestsellers',
+                href: '/products?category=desks',
+                imageSrc: '/nav/desks/img_2.png',
+            },
+        ],
+    },
 ]
