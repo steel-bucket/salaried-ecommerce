@@ -50,7 +50,7 @@ export interface Product {
   name: string;
   description?: string | null;
   price: number;
-  category: 'waterBottles' | 'monies' | 'ants' | 'boxes';
+  category: 'waterBottles' | 'keyboards' | 'headphones' | 'mice' | 'monitors' | 'chairs' | 'desks';
   productFiles: (string | ProductFile)[];
   approvedForSale?: ('pending' | 'approved' | 'denied') | null;
   priceId?: string | null;

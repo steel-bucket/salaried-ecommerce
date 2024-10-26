@@ -38,3 +38,6 @@ next-env.d.ts
 /src/buffer/
 buffer
 a.html
+/navbuffer
+/build
+/dist
