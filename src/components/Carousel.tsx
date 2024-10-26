@@ -22,41 +22,6 @@ const slides = [
         buttonText: 'PreOrder water',
         buttonLink: '/products/',
     },
-    // {
-    //     id: 2,
-    //     image: '//www.genesispc.in/cdn/shop/files/bg_banner_product_A75_2x_5e4fccbb-4cc2-48c0-a563-6b23a2a81f25.webp?v=1718031710',
-    //     title: 'DrunkDeer Rapid Trigger Keyboards Available!',
-    //     description:
-    //         'Take your in-game movement to the next level with DrunkDeer Rapid Trigger Keyboards.',
-    //     buttonText: 'Check Out',
-    //     buttonLink: '/collections/drunkdeer',
-    // },
-    // {
-    //     id: 3,
-    //     image: '//www.genesispc.in/cdn/shop/files/GPSvc7QbwAAdBEt.jpg?v=1717602868',
-    //     title: 'X-raypad x Teru',
-    //     description:
-    //         'Newly Launched Cerberus Bundle that Includes Origin Pro Mousepad and Keycaps is up for PreOrder!',
-    //     buttonText: 'Check Out',
-    //     buttonLink: '/collections/xraypad',
-    // },
-    // {
-    //     id: 4,
-    //     image: '//www.genesispc.in/cdn/shop/files/R2-SP-Keycap-SP2.jpg?v=1715264054',
-    //     title: 'Akko and Other Custom Keycaps Available!',
-    //     description: 'Give yourself a new typing experience',
-    //     buttonText: 'Shop Keycaps',
-    //     buttonLink: '/collections/keycaps',
-    // },
-    // {
-    //     id: 5,
-    //     image: '//www.genesispc.in/cdn/shop/files/robpad_da6bf355-6ceb-45d2-a4a0-7682894eeeab.png?v=1714938641',
-    //     title: 'X-raypad Products Available Now!',
-    //     description:
-    //         'Choose from lineup of high quality mousepads, mouse grips and mouse skates.',
-    //     buttonText: 'Shop X-raypad',
-    //     buttonLink: '/collections/xraypad',
-    // },
 ]
 
 // @ts-ignore

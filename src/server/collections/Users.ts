@@ -1,4 +1,5 @@
 import { Access, CollectionConfig } from 'payload/types'
+import { Email } from '../../components/Emails/Email'
 
 const adminsAndUser: Access = ({ req: { user } }) => {
     if (user.role === 'admin') return true
@@ -14,7 +15,12 @@ export const Users: CollectionConfig = {
     auth: {
         verify: {
             generateEmailHTML: ({ token }) => {
-                return `<a href="${process.env.NEXT_PUBLIC_SERVER_URL}/verify?token=${token}">Verify Email</a>`
+                // return `<a href="${process.env.NEXT_PUBLIC_SERVER_URL}/verify?token=${token}">Verify Email</a>`
+                return Email({
+                    actionLabel: 'verify your email',
+                    buttonText: 'Verify Email',
+                    href: `${process.env.NEXT_PUBLIC_SERVER_URL}/verify?token=${token}`,
+                })
             },
         },
     },

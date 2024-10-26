@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { formatPrice } from '../../lib/utils'
 import { Product } from '../../config/payload-types'
 
@@ -17,7 +18,6 @@ import {
     render,
 } from '@react-email/components'
 
-import * as React from 'react'
 
 import { format } from 'date-fns'
 

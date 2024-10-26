@@ -54,7 +54,7 @@ export default function ReturnRefundPolicy() {
                 </h2>
                 <p>
                     If you believe you are eligible for a refund, please contact
-                    our customer support team with your order details and the
+                    our customer support team(me) with your order details and the
                     reason for your refund request.
                 </p>
                 <h2 className="text-2xl font-semibold mt-6 mb-3 text-gray-800 dark:text-gray-200">
