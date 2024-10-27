@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Users = void 0;
+var Email_1 = require("../../components/Emails/Email");
 var adminsAndUser = function (_a) {
     var user = _a.req.user;
     if (user.role === 'admin')
@@ -17,7 +18,12 @@ exports.Users = {
         verify: {
             generateEmailHTML: function (_a) {
                 var token = _a.token;
-                return "<a href=\"".concat(process.env.NEXT_PUBLIC_SERVER_URL, "/verify?token=").concat(token, "\">Verify Email</a>");
+                // return `<a href="${process.env.NEXT_PUBLIC_SERVER_URL}/verify?token=${token}">Verify Email</a>`
+                return (0, Email_1.Email)({
+                    actionLabel: 'verify your email',
+                    buttonText: 'Verify Email',
+                    href: "".concat(process.env.NEXT_PUBLIC_SERVER_URL, "/verify?token=").concat(token),
+                });
             },
         },
     },
