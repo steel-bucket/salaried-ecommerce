@@ -6,6 +6,7 @@
     "outDir": "dist",
     "noEmit": false,
     "jsx": "react",
+    "noImplicitAny": false
   },
   "include": [
     "src/server/server.ts",
