@@ -9,8 +9,8 @@
     "build:payload": "cross-env PAYLOAD_CONFIG_PATH=src/config/payload.config.ts payload build",
     "build:server": "tsc --project tsconfig.server.json",
     "build:next": "cross-env PAYLOAD_CONFIG_PATH=dist/config/payload.config.js NEXT_BUILD=true node dist/server/server.js",
-    "build": "cross-env NODE_ENV=production pnpm build:payload && pnpm build:server && pnpm copyfiles && pnpm build:next && next build && mkdir .next && cp -r build/* .next/",
     "copyfiles": "copyfiles -u 1 \"src/**/*.{html,css,scss,ttf,woff,woff2,eot,svg,jpg,png}\" dist/",
+    "build": "cross-env NODE_ENV=production pnpm build:payload && pnpm build:server && pnpm copyfiles && pnpm build:next && next build",
     "start": "next start",
     "lint": "next lint"
   },
