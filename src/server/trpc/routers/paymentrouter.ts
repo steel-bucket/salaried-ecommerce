@@ -8,22 +8,37 @@ import { Product } from '@/config/payload-types'
 
 export const paymentrouter = router({
     createSession: privateProcedure
-        .input(z.object({ productIds: z.array(z.string()) }))
+        .input(
+            z.object({
+                // Now accepts an array of objects with both id and quantity
+                productIds: z.array(
+                    z.object({
+                        id: z.string(),
+                        quantity: z.number(),
+                    })
+                ),
+            })
+        )
         .mutation(async ({ ctx, input }) => {
             const { user } = ctx
-            let { productIds } = input
+            const productIdsWithQuantity = input.productIds
 
-            if (productIds.length === 0) {
+            if (productIdsWithQuantity.length === 0) {
                 throw new TRPCError({ code: 'BAD_REQUEST' })
             }
 
             const payload = await getPayloadClient()
 
+            // Get the unique product IDs
+            const uniqueIds = Array.from(
+                new Set(productIdsWithQuantity.map((p) => p.id))
+            )
+
             const result = await payload.find({
                 collection: 'products',
                 where: {
                     id: {
-                        in: productIds,
+                        in: uniqueIds,
                     },
                 },
             })
@@ -43,10 +58,10 @@ export const paymentrouter = router({
                 createdAt: doc.createdAt,
             }))
 
-            const filteredProducts = products.filter((prod) =>
-                Boolean(prod.priceId)
-            )
+            // Only include products with a valid priceId
+            const filteredProducts = products.filter((prod) => Boolean(prod.priceId))
 
+            // Create an order record using unique product IDs (for tracking)
             const order = await payload.create({
                 collection: 'orders',
                 data: {
@@ -55,21 +70,19 @@ export const paymentrouter = router({
                     user: user.id,
                 },
             })
-            const { docs: orders } = await payload.find({
-                collection: 'orders',
-            })
-            console.log(orders)
 
-            const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] =
-                []
-
+            // Build Stripe line items using the passed quantity values
+            const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = []
             filteredProducts.forEach((product) => {
+                const productData = productIdsWithQuantity.find((p) => p.id === product.id)
+                const quantity = productData ? productData.quantity : 1
                 line_items.push({
                     price: product.priceId!,
-                    quantity: 1,
+                    quantity: quantity,
                 })
             })
 
+            // Additional fixed line item (if needed)
             line_items.push({
                 price: 'price_1Q66hqP69aOrZAXYZ3k9NobY',
                 quantity: 1,
@@ -77,6 +90,8 @@ export const paymentrouter = router({
                     enabled: false,
                 },
             })
+
+            console.log('Stripe line items:', line_items)
 
             try {
                 const stripeSession = await stripe.checkout.sessions.create({

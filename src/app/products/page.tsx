@@ -139,7 +139,7 @@ export default async function ProductsPage({ searchParams }: PageProps) {
                                         {formatPrice(product.price)}
                                     </span>
                                     <Link
-                                        href={`/products/${product.id}`}
+                                        href={`/product/${product.id}`}
                                         className="text-sm bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-500 dark:hover:bg-blue-600 py-2 px-4 rounded transition-colors duration-300"
                                     >
                                         View Details
