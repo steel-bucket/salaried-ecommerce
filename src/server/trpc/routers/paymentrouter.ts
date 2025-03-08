@@ -59,7 +59,9 @@ export const paymentrouter = router({
             }))
 
             // Only include products with a valid priceId
-            const filteredProducts = products.filter((prod) => Boolean(prod.priceId))
+            const filteredProducts = products.filter((prod) =>
+                Boolean(prod.priceId)
+            )
 
             // Create an order record using unique product IDs (for tracking)
             const order = await payload.create({
@@ -72,9 +74,12 @@ export const paymentrouter = router({
             })
 
             // Build Stripe line items using the passed quantity values
-            const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = []
+            const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] =
+                []
             filteredProducts.forEach((product) => {
-                const productData = productIdsWithQuantity.find((p) => p.id === product.id)
+                const productData = productIdsWithQuantity.find(
+                    (p) => p.id === product.id
+                )
                 const quantity = productData ? productData.quantity : 1
                 line_items.push({
                     price: product.priceId!,

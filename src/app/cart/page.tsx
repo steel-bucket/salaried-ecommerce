@@ -94,80 +94,111 @@ const Page = () => {
                                 })}
                             >
                                 {isMounted &&
-                                    removeDuplicates(items).map(({ product }) => {
-                                        const label = PRODUCT_CATEGORIES.find(
-                                            (c) => c.value === product.category
-                                        )?.label
-                                        // @ts-ignore
-                                        const { image } = product.images[0]
-                                        const quantity = items.filter(
-                                            (x) => x.product?.id === product?.id
-                                        ).length
-                                        return (
-                                            <li
-                                                key={product.id}
-                                                className="flex py-6 sm:py-10 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors rounded-lg p-4 mb-4"
-                                            >
-                                                <Link href={`/product/${product.id}`} className="flex-shrink-0">
-                                                    <div className="relative h-24 w-24 rounded-md overflow-hidden shadow-lg">
-                                                        {typeof image !== 'string' && image.url ? (
-                                                            <Image
-                                                                fill
-                                                                src={image.url}
-                                                                alt={product.name}
-                                                                className="object-cover object-center"
-                                                            />
-                                                        ) : null}
-                                                    </div>
-                                                </Link>
-                                                <div className="ml-4 flex flex-1 flex-col justify-between">
-                                                    <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
-                                                        <div>
-                                                            <div className="flex justify-between">
-                                                                <h3 className="text-lg font-semibold">
-                                                                    <Link
-                                                                        href={`/product/${product.id}`}
-                                                                        className="text-gray-700 hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-100 transition-colors"
-                                                                    >
-                                                                        {product.name}
-                                                                    </Link>
-                                                                </h3>
-                                                            </div>
-                                                            <div className="mt-1 flex text-sm">
-                                                                <p className="text-gray-600 dark:text-gray-400">
-                                                                    Category: {label}
+                                    removeDuplicates(items).map(
+                                        ({ product }) => {
+                                            const label =
+                                                PRODUCT_CATEGORIES.find(
+                                                    (c) =>
+                                                        c.value ===
+                                                        product.category
+                                                )?.label
+                                            // @ts-ignore
+                                            const { image } = product.images[0]
+                                            const quantity = items.filter(
+                                                (x) =>
+                                                    x.product?.id ===
+                                                    product?.id
+                                            ).length
+                                            return (
+                                                <li
+                                                    key={product.id}
+                                                    className="flex py-6 sm:py-10 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors rounded-lg p-4 mb-4"
+                                                >
+                                                    <Link
+                                                        href={`/product/${product.id}`}
+                                                        className="flex-shrink-0"
+                                                    >
+                                                        <div className="relative h-24 w-24 rounded-md overflow-hidden shadow-lg">
+                                                            {typeof image !==
+                                                                'string' &&
+                                                            image.url ? (
+                                                                <Image
+                                                                    fill
+                                                                    src={
+                                                                        image.url
+                                                                    }
+                                                                    alt={
+                                                                        product.name
+                                                                    }
+                                                                    className="object-cover object-center"
+                                                                />
+                                                            ) : null}
+                                                        </div>
+                                                    </Link>
+                                                    <div className="ml-4 flex flex-1 flex-col justify-between">
+                                                        <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
+                                                            <div>
+                                                                <div className="flex justify-between">
+                                                                    <h3 className="text-lg font-semibold">
+                                                                        <Link
+                                                                            href={`/product/${product.id}`}
+                                                                            className="text-gray-700 hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-100 transition-colors"
+                                                                        >
+                                                                            {
+                                                                                product.name
+                                                                            }
+                                                                        </Link>
+                                                                    </h3>
+                                                                </div>
+                                                                <div className="mt-1 flex text-sm">
+                                                                    <p className="text-gray-600 dark:text-gray-400">
+                                                                        Category:{' '}
+                                                                        {label}
+                                                                    </p>
+                                                                </div>
+                                                                <p className="mt-1 text-md font-medium text-gray-900 dark:text-gray-100">
+                                                                    {formatPrice(
+                                                                        product.price
+                                                                    )}
                                                                 </p>
                                                             </div>
-                                                            <p className="mt-1 text-md font-medium text-gray-900 dark:text-gray-100">
-                                                                {formatPrice(product.price)}
-                                                            </p>
+                                                            <div className="mt-4 sm:mt-0 sm:pr-9 w-20 relative">
+                                                                <Button
+                                                                    aria-label="Remove product"
+                                                                    onClick={() =>
+                                                                        removeItem(
+                                                                            product.id
+                                                                        )
+                                                                    }
+                                                                    variant="ghost"
+                                                                    className="absolute right-0 top-0"
+                                                                >
+                                                                    <X
+                                                                        className="h-5 w-5"
+                                                                        aria-hidden="true"
+                                                                    />
+                                                                </Button>
+                                                            </div>
                                                         </div>
-                                                        <div className="mt-4 sm:mt-0 sm:pr-9 w-20 relative">
-                                                            <Button
-                                                                aria-label="Remove product"
-                                                                onClick={() => removeItem(product.id)}
-                                                                variant="ghost"
-                                                                className="absolute right-0 top-0"
-                                                            >
-                                                                <X className="h-5 w-5" aria-hidden="true" />
-                                                            </Button>
+                                                        <div className="mt-4 flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                                                            <div className="flex items-center space-x-2 text-sm">
+                                                                <Check className="h-5 w-5 text-green-500" />
+                                                                <span className="text-gray-700 dark:text-gray-300">
+                                                                    Eligible for
+                                                                    instant
+                                                                    delivery
+                                                                </span>
+                                                            </div>
+                                                            <div className="mt-2 sm:mt-0 text-sm text-gray-700 dark:text-gray-300">
+                                                                Quantity:{' '}
+                                                                {quantity}
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div className="mt-4 flex flex-col sm:flex-row justify-between items-start sm:items-center">
-                                                        <div className="flex items-center space-x-2 text-sm">
-                                                            <Check className="h-5 w-5 text-green-500" />
-                                                            <span className="text-gray-700 dark:text-gray-300">
-                                Eligible for instant delivery
-                              </span>
-                                                        </div>
-                                                        <div className="mt-2 sm:mt-0 text-sm text-gray-700 dark:text-gray-300">
-                                                            Quantity: {quantity}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        )
-                                    })}
+                                                </li>
+                                            )
+                                        }
+                                    )}
                             </ul>
                         )}
                     </div>
