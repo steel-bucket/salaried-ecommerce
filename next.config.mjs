@@ -2,22 +2,26 @@ import { hostname } from 'node:os'
 import path from 'path'
 import { dirname } from 'path';
 import { fileURLToPath } from 'node:url'
+import dotenv from 'dotenv'
 
 
 const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = dirname(__filename);
 
+dotenv.config({
+    path: path.resolve(__dirname, './.env'),
+})
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
         remotePatterns: [
             {
-                hostname: 'localhost',
+                hostname: process.env.NODE_ENV === 'development' ? 'localhost' : 'salaried-ecommerce.onrender.com',
                 pathname: '**',
-                port: '3000',
-                protocol: 'http',
+                port: process.env.NODE_ENV === 'development' ? '3000' : '',
+                protocol: process.env.NODE_ENV === 'development' ? 'http' : 'https',
             },
         ],
     },
@@ -40,20 +44,11 @@ const nextConfig = {
             '@': path.resolve(__dirname, 'src'),
         };
 
-
         return config
     },
-    // async rewrites() {
-    //     return [
-    //         {
-    //             source: '/api/:path*',
-    //             destination: 'http://localhost:3000/:path*'
-    //         }
-    //     ];
-    // },
+
     reactStrictMode: true,
     swcMinify: true,
     output: 'standalone',
 }
-
 export default nextConfig
