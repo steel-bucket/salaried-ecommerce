@@ -20,7 +20,7 @@ const Verify = ({ searchParams }: VerifyProps) => {
                 ) : (
                     <div className="flex h-full flex-col items-center justify-center space-y-1">
                         <div className="relative mb-4 h-60 w-80 text-muted-foreground">
-                            <Image src="/sentemail.png" fill alt="sent email" />
+                            <Image priority src="/sentemail.png" fill alt="sent email" />
                         </div>
                         <h3 className="font-semibold text-2xl">
                             Check your email

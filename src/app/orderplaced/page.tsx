@@ -48,6 +48,7 @@ const OrderPlacedPage = async ({ searchParams }: OrderPlacedPageProps) => {
         <main className="relative lg:min-h-full">
             <div className="h-screen fixed overflow-hidden w-1/2 pr-4 xl:pr-12">
                 <Image
+                    priority
                     fill
                     src="/checkout.jpg"
                     className="h-full w-full object-cover object-center"
@@ -118,6 +119,7 @@ const OrderPlacedPage = async ({ searchParams }: OrderPlacedPageProps) => {
                                                     typeof image !== 'string' &&
                                                     image.url ? (
                                                         <Image
+                                                            priority
                                                             fill
                                                             src={image.url}
                                                             alt={`${product.name} image`}

@@ -83,6 +83,7 @@ const MobileNav = () => {
                                                     >
                                                         <div className="relative aspect-square overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800 group-hover:opacity-75">
                                                             <Image
+                                                                priority
                                                                 fill
                                                                 src={
                                                                     item.imageSrc

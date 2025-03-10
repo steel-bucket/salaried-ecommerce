@@ -78,6 +78,7 @@ const Page = () => {
                                     Your cart is empty
                                 </p>
                                 <Image
+                                    priority
                                     src="/empty-cart.png"
                                     height={100}
                                     width={100}
@@ -123,6 +124,7 @@ const Page = () => {
                                                                 'string' &&
                                                             image.url ? (
                                                                 <Image
+                                                                    priority
                                                                     fill
                                                                     src={
                                                                         image.url

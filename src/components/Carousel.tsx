@@ -67,6 +67,7 @@ const Component = () => {
                     <CarouselItem key={slide.id}>
                         <div className="relative h-[600px] w-full">
                             <Image
+                                priority
                                 src={`/${slide.image}`}
                                 alt={slide.title}
                                 fill

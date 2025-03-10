@@ -84,6 +84,7 @@ const ProductImageSlider = ({ urls }: { urls: string[] }) => {
                 {urls.map((url, index) => (
                     <SwiperSlide key={index} className="-z-10 h-full w-full">
                         <Image
+                            priority
                             fill
                             loading="eager"
                             className="-z-10 h-full w-full object-cover object-center"

@@ -28,6 +28,7 @@ const VerifyEmail = ({ token }: VerifyEmailProps) => {
             <div className="flex h-full flex-col items-center justify-center">
                 <div className="relative mb-4 h-64 w-72 text-muted-foreground ">
                     <Image
+                        priority
                         src="/emailsent.png"
                         fill
                         alt="email has been sent"

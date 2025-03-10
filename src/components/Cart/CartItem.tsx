@@ -20,6 +20,7 @@ const CartItem = ({ product, count }: { product: Product; count?: number }) => {
                     <div className="relative aspect-square h-16 w-16 min-w-fit overflow-hidden rounded-lg">
                         {typeof image !== 'string' && image.url ? (
                             <Image
+                                priority
                                 src={image.url}
                                 alt={product.name}
                                 fill

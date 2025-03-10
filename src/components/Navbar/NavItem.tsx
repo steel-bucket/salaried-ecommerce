@@ -53,6 +53,7 @@ const NavItem = ({ category, handleOpen, isOpen, isAnyOpen }: NavItemProps) => {
                             >
                                 <div className="aspect-video relative overflow-hidden rounded-t-lg bg-gray-100 dark:bg-gray-800 group-hover:opacity-75 transition-opacity">
                                     <Image
+                                        priority
                                         src={item.imageSrc}
                                         alt={`${item.name} category image`}
                                         fill

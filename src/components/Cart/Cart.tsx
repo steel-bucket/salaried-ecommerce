@@ -126,7 +126,7 @@ const Cart = () => {
                 ) : (
                     <div className="flex h-full flex-col justify-center space-y-1 items-center">
                         <div className="h-60 w-60 relative mb-4 text-muted-foreground">
-                            <Image src="/empty-cart.png" fill alt="money" />
+                            <Image priority src="/empty-cart.png" fill alt="money" />
                         </div>
                         <p className="text-xl text-gray-500 dark:text-gray-400">
                             Your cart is empty

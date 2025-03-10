@@ -45,6 +45,7 @@ async function CategoryCard({
                     className="block relative aspect-video overflow-hidden group-hover:opacity-95 transition-opacity duration-300"
                 >
                     <Image
+                        priority
                         src={category.featured[0].imageSrc}
                         alt={`${category.label} category`}
                         fill
@@ -97,6 +98,7 @@ async function ProductCard({ product }: { product: Product }) {
                     className="block aspect-square overflow-hidden group-hover:opacity-95 transition-opacity duration-300"
                 >
                     <Image
+                        priority
                         // @ts-ignore
                         src={imageUrl}
                         alt={product.name}
