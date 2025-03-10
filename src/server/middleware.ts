@@ -10,7 +10,7 @@ export async function middleware(req: NextRequest) {
         ['/login', '/register'].includes(nextUrl.pathname)
     ) {
         return NextResponse.redirect(
-            `${process.env.NEXT_PUBLIC_SERVER_URL}/`
+            `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/`
         )
     }
 

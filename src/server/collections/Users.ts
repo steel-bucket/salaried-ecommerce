@@ -15,11 +15,11 @@ export const Users: CollectionConfig = {
     auth: {
         verify: {
             generateEmailHTML: ({ token }) => {
-                // return `<a href="${process.env.NEXT_PUBLIC_SERVER_URL}/verify?token=${token}">Verify Email</a>`
+                // return `<a href="${process.env.PAYLOAD_PUBLIC_SERVER_URL}/verify?token=${token}">Verify Email</a>`
                 return Email({
                     actionLabel: 'verify your email',
                     buttonText: 'Verify Email',
-                    href: `${process.env.NEXT_PUBLIC_SERVER_URL}/verify?token=${token}`,
+                    href: `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/verify?token=${token}`,
                 })
             },
         },
