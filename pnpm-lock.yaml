@@ -167,9 +167,6 @@ importers:
       resend:
         specifier: ^4.1.2
         version: 4.1.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      sharp:
-        specifier: ^0.32.6
-        version: 0.32.6
       sonner:
         specifier: ^1.7.4
         version: 1.7.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
