@@ -100,8 +100,8 @@ export const paymentrouter = router({
 
             try {
                 const stripeSession = await stripe.checkout.sessions.create({
-                    success_url: `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/orderplaced?orderId=${order.id}`,
-                    cancel_url: `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/cart`,
+                    success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/orderplaced?orderId=${order.id}`,
+                    cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/cart`,
                     payment_method_types: ['card'],
                     mode: 'payment',
                     metadata: {

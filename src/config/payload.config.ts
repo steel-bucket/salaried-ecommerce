@@ -19,7 +19,7 @@ dotenv.config({
 })
 
 export default buildConfig({
-    serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
+    serverURL: process.env.NEXT_PUBLIC_SERVER_URL || '',
     collections: [Users, Products, Media, ProductFiles, Orders],
     routes: {
         admin: '/sell',
@@ -39,7 +39,7 @@ export default buildConfig({
     db: mongooseAdapter({
         url: process.env.MONGO_URL!,
     }),
-    csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || ''],
+    csrf: [process.env.NEXT_PUBLIC_SERVER_URL || ''],
     typescript: {
         outputFile: path.resolve(__dirname, 'payload-types.ts'),
     },

@@ -86,7 +86,7 @@ const start = async () => {
         )
         app.listen(PORT, async () => {
             payload.logger.info(
-                `Next JS server URL ${process.env.PAYLOAD_PUBLIC_SERVER_URL}`
+                `Next JS server URL ${process.env.NEXT_PUBLIC_SERVER_URL}`
             )
         })
     })

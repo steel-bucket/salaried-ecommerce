@@ -27,7 +27,8 @@
       ]
     },
     "useUnknownInCatchVariables": false,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "target": "ES2017"
   },
   "include": [
     "next-env.d.ts",

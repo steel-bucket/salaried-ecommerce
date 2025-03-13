@@ -6,6 +6,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import ContactSection from '@/components/ContactSection'
 
+export const runtime = 'edge'
+
 function HeroSection() {
     return (
         <section
@@ -211,8 +213,9 @@ function TestimonialSection() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div className="bg-white dark:bg-black p-6 rounded-lg shadow transition-colors">
                         <p className="text-gray-600 dark:text-gray-300 mb-4">
-                            "I love my new insulated water bottle! It keeps my
-                            drinks cold all day, even in the summer heat."
+                            &quot;I love my new insulated water bottle! It keeps
+                            my drinks cold all day, even in the summer
+                            heat.&quot;{' '}
                         </p>
                         <div className="flex items-center">
                             <Image
@@ -235,8 +238,8 @@ function TestimonialSection() {
                     </div>
                     <div className="bg-white dark:bg-black p-6 rounded-lg shadow transition-colors">
                         <p className="text-gray-600 dark:text-gray-300 mb-4">
-                            "The mechanical keyboard I got is a game-changer!
-                            Typing feels so satisfying."
+                            &quot;The mechanical keyboard I got is a
+                            game-changer! Typing feels so satisfying.&quot;{' '}
                         </p>
                         <div className="flex items-center">
                             <Image
@@ -259,8 +262,9 @@ function TestimonialSection() {
                     </div>
                     <div className="bg-white dark:bg-black p-6 rounded-lg shadow transition-colors">
                         <p className="text-gray-600 dark:text-gray-300 mb-4">
-                            "Fast shipping and great prices. I got both a water
-                            bottle and a keyboard—both are top notch."
+                            &quot;Fast shipping and great prices. I got both a
+                            water bottle and a keyboard—both are top
+                            notch.&quot;{' '}
                         </p>
                         <div className="flex items-center">
                             <Image
@@ -417,55 +421,54 @@ function NewsletterSection() {
     )
 }
 
-
-function ExtraContent() {
-    return (
-        <section className="py-12 bg-gray-100 dark:bg-black transition-colors">
-            <div className="max-w-7xl mx-auto px-4">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                    More About Our Services
-                </h2>
-                <div className="space-y-6">
-                    <div className="bg-white dark:bg-black p-6 rounded-lg shadow transition-colors">
-                        <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
-                            Product Consultation
-                        </h3>
-                        <p className="mt-2 text-gray-600 dark:text-gray-300">
-                            Our experts will guide you in choosing items that
-                            fit your lifestyle.
-                        </p>
-                    </div>
-                    <div className="bg-white dark:bg-black p-6 rounded-lg shadow transition-colors">
-                        <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
-                            After-Sales Support
-                        </h3>
-                        <p className="mt-2 text-gray-600 dark:text-gray-300">
-                            We offer top-notch support for any issues or queries
-                            post-purchase.
-                        </p>
-                    </div>
-                    <div className="bg-white dark:bg-black p-6 rounded-lg shadow transition-colors">
-                        <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
-                            Warranty &amp; Repairs
-                        </h3>
-                        <p className="mt-2 text-gray-600 dark:text-gray-300">
-                            All our products include a reliable warranty for
-                            peace of mind.
-                        </p>
-                    </div>
-                    <div className="bg-white dark:bg-black p-6 rounded-lg shadow transition-colors">
-                        <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
-                            Financing Options
-                        </h3>
-                        <p className="mt-2 text-gray-600 dark:text-gray-300">
-                            Easy payment plans available for your convenience.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    )
-}
+// function ExtraContent() {
+//     return (
+//         <section className="py-12 bg-gray-100 dark:bg-black transition-colors">
+//             <div className="max-w-7xl mx-auto px-4">
+//                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+//                     More About Our Services
+//                 </h2>
+//                 <div className="space-y-6">
+//                     <div className="bg-white dark:bg-black p-6 rounded-lg shadow transition-colors">
+//                         <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
+//                             Product Consultation
+//                         </h3>
+//                         <p className="mt-2 text-gray-600 dark:text-gray-300">
+//                             Our experts will guide you in choosing items that
+//                             fit your lifestyle.
+//                         </p>
+//                     </div>
+//                     <div className="bg-white dark:bg-black p-6 rounded-lg shadow transition-colors">
+//                         <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
+//                             After-Sales Support
+//                         </h3>
+//                         <p className="mt-2 text-gray-600 dark:text-gray-300">
+//                             We offer top-notch support for any issues or queries
+//                             post-purchase.
+//                         </p>
+//                     </div>
+//                     <div className="bg-white dark:bg-black p-6 rounded-lg shadow transition-colors">
+//                         <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
+//                             Warranty &amp; Repairs
+//                         </h3>
+//                         <p className="mt-2 text-gray-600 dark:text-gray-300">
+//                             All our products include a reliable warranty for
+//                             peace of mind.
+//                         </p>
+//                     </div>
+//                     <div className="bg-white dark:bg-black p-6 rounded-lg shadow transition-colors">
+//                         <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
+//                             Financing Options
+//                         </h3>
+//                         <p className="mt-2 text-gray-600 dark:text-gray-300">
+//                             Easy payment plans available for your convenience.
+//                         </p>
+//                     </div>
+//                 </div>
+//             </div>
+//         </section>
+//     )
+// }
 
 export default function Home() {
     return (
@@ -519,7 +522,7 @@ export default function Home() {
 
                 <section className="mt-16">
                     <NewsletterSection />
-                    <br/>
+                    <br />
                 </section>
             </MaxWidthWrapper>
             <Footer />

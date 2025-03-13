@@ -1,4 +1,5 @@
 import FollowUsAt from '@/components/Footer/FollowUsAt'
+import Link from 'next/link'
 
 export function Footer() {
     return (
@@ -31,24 +32,24 @@ export function Footer() {
                     </div>
 
                     <div className="text-center md:text-left">
-                        <a
+                        <Link
                             href="/privacy-policy"
                             className="block text-sm text-muted-foreground hover:underline mb-2"
                         >
                             Privacy Policy
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                             href="/terms-of-service"
                             className="block text-sm text-muted-foreground hover:underline mb-2"
                         >
                             Terms of Service
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                             href="/return-refund-policy"
                             className="block text-sm text-muted-foreground hover:underline"
                         >
                             Return and Refund Policy
-                        </a>
+                        </Link>
                     </div>
 
                     <div className="text-center md:text-left">
