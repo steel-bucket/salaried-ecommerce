@@ -18,12 +18,23 @@ const nextConfig = {
     images: {
         remotePatterns: [
             {
-                hostname: process.env.NODE_ENV === 'development' ? 'localhost' : 'salaried-ecommerce.onrender.com',
-                pathname: '**',
-                port: process.env.NODE_ENV === 'development' ? '3000' : '',
-                protocol: process.env.NODE_ENV === 'development' ? 'http' : 'https',
+                protocol: 'http',
+                hostname: 'localhost',
+                port: '3000',
+            },
+            {
+                protocol: 'https',
+                hostname: 'salaried-ecommerce.onrender.com',
             },
         ],
+        // remotePatterns: [
+        //     {
+        //         hostname: process.env.NODE_ENV === 'development' ? 'localhost' : 'salaried-ecommerce.onrender.com',
+        //         pathname: '**',
+        //         port: process.env.NODE_ENV === 'development' ? '3000' : '',
+        //         protocol: process.env.NODE_ENV === 'development' ? 'http' : 'https',
+        //     },
+        // ],
     },
     distDir: 'build',
     webpack: (config, { isServer }) => {
@@ -47,8 +58,8 @@ const nextConfig = {
         return config
     },
 
-    reactStrictMode: true,
-    swcMinify: true,
-    output: 'standalone',
+    // reactStrictMode: true,
+    // swcMinify: true,
+    // output: 'standalone',
 }
 export default nextConfig

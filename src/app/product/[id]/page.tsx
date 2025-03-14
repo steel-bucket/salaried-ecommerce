@@ -11,9 +11,9 @@ import ProductReel from '@/components/Products/ProductReel'
 import AddToCartButton from '@/components/Cart/AddToCartButton'
 
 interface PageProps {
-    params: {
+    params: Promise<{
         id: string
-    }
+    }>
 }
 
 const BreadCrumbs = [
@@ -25,7 +25,7 @@ const Page = async ({ params }: PageProps) => {
     const createMarkup = ({ html }: { html: string }) => {
         return { __html: html }
     }
-    const { id } = params
+    const { id } = await params
     const payload = await getPayloadClient()
     // @ts-ignore
     const { docs: products }: { docs: Array<Product> } = await payload.find({

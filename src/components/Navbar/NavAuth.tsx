@@ -5,7 +5,7 @@ import { cookies } from 'next/headers'
 import NavAuthDropDown from './NavAuthDropDown'
 
 const NavAuth = async () => {
-    const nextCookies = cookies()
+    const nextCookies = await cookies()
     const { user } = await getServerSideUser(nextCookies)
     return (
         <>

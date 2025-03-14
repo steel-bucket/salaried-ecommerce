@@ -8,14 +8,19 @@ import { formatPrice } from '@/lib/utils'
 import Link from 'next/link'
 import { getPayloadClient } from '@/server/getpayload'
 import PaymentStatus from '@/components/Payment/PaymentStatus'
+
 interface OrderPlacedPageProps {
-    searchParams: {
+    searchParams: Promise<{
         [key: string]: string | string[] | undefined
-    }
+    }>
 }
-const OrderPlacedPage = async ({ searchParams }: OrderPlacedPageProps) => {
-    const orderId = searchParams.orderId
-    const nextCookies = cookies()
+
+export default async function OrderPlacedPage({
+    searchParams,
+}: OrderPlacedPageProps) {
+    const params = await searchParams
+    const orderId = params.orderId
+    const nextCookies = await cookies()
     const { user } = await getServerSideUser(nextCookies)
     const payload = await getPayloadClient()
 
@@ -215,4 +220,3 @@ const OrderPlacedPage = async ({ searchParams }: OrderPlacedPageProps) => {
         </main>
     )
 }
-export default OrderPlacedPage

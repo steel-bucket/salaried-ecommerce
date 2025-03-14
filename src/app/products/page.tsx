@@ -21,7 +21,7 @@ import { Footer } from '@/components/Footer/Footer'
 import AddToCartButton from '@/components/Cart/AddToCartButton'
 
 interface PageProps {
-    searchParams: { [key: string]: string | string[] | undefined }
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 async function CategoryCard({
@@ -164,9 +164,10 @@ async function getProducts(category?: string, sort?: string, query?: string) {
 
 export default async function ProductsPage({ searchParams }: PageProps) {
     // Get URL query params directly from the server-side context.
-    const category = searchParams.category as string | undefined
-    const sort = searchParams.sort as string | undefined
-    const query = (searchParams.q as string) || ''
+    const params = await searchParams
+    const category = params.category as string | undefined
+    const sort = params.sort as string | undefined
+    const query = (params.q as string) || ''
 
     if (sort && !category) {
         notFound()

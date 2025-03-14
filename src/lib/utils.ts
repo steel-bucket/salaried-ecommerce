@@ -87,8 +87,8 @@ export function formatPrice(
 }
 
 export function constructMetadata({
-    title = 'Salaried - the marketplace for digital assets',
-    description = 'Salaried is an open-source marketplace for high-quality digital goods.',
+    title = 'Salaried - the marketplace for waterbottles, keyboards and more.',
+    description = 'Salaried is an open-source marketplace for high-quality salaried goods.',
     image = '/thumbnail.png',
     icons = '/favicon.ico',
     noIndex = false,
