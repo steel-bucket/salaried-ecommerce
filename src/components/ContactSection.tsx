@@ -84,10 +84,10 @@ function ContactSection() {
                             </div>
                             <button
                                 type="submit"
-                                disabled={sendEmailMutation.isLoading}
+                                disabled={sendEmailMutation.isPending}
                                 className="w-full py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors disabled:opacity-50"
                             >
-                                {sendEmailMutation.isLoading ? 'Sending...' : 'Send Message'}
+                                {sendEmailMutation.isPending ? 'Sending...' : 'Send Message'}
                             </button>
                         </form>
                     </div>

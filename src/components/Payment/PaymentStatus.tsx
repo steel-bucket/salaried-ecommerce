@@ -17,9 +17,10 @@ const PaymentStatus = ({ orderEmail, orderId, isPaid }: PaymentStatusProps) => {
         { orderId },
         {
             enabled: isPaid === false,
-            refetchInterval: (data) => (data?.isPaid ? false : 1000),
+            refetchInterval: () => (data?.isPaid ? false : 1000),
         }
     )
+
 
     useEffect(() => {
         if (data?.isPaid) router.refresh()

@@ -1,15 +1,23 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "module": "CommonJS",
-    "moduleResolution": "node",
+    "baseUrl": ".",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "outDir": "dist",
     "noEmit": false,
+    "allowImportingTsExtensions": false,
     "jsx": "react",
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": [
     "src/server/server.ts",
-    "src/config/payload.config.ts"
+    "src/config/payload.config.ts",
+    "src/server/**/*",
+    "src/config/**/*",
+    "src/lib/**/*"
   ]
 }

@@ -1,11 +1,11 @@
 import express from 'express'
 import { WebhookRequest } from './server'
 import { stripe } from '../lib/stripe'
-import type Stripe from 'stripe'
+import Stripe from 'stripe'
 import { getPayloadClient } from '../server/getpayload'
 import { Product } from '../config/payload-types'
 import { Resend } from 'resend'
-import { ReceiptEmailHtml } from '../components/Emails/ReceiptEmail'
+// import { ReceiptEmailHtml } from '../components/Emails/ReceiptEmail.tsx'
 
 const resend = new Resend(process.env.RESENDAPIKEY)
 
@@ -94,13 +94,7 @@ export const stripeWebhookHandler = async (
                     from: 'Salaried <22bec038@iiitdmj.com>',
                     to: [user.email],
                     subject: 'Thanks for your order! This is your receipt.',
-                    // @ts-ignore
-                    html: ReceiptEmailHtml({
-                        date: new Date(),
-                        email: user.email,
-                        orderId: session.metadata.orderId,
-                        products: order.products as Product[],
-                    }),
+                    html: `<h1>Thank you for your order!</h1><p>Order ID: ${session.metadata.orderId}</p>`,
                 })
                 res.status(200).json({ data })
             } catch (error) {

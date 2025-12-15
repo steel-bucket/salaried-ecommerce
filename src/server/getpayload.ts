@@ -1,11 +1,12 @@
 import dotenv from 'dotenv'
 import path from 'path'
-import type { InitOptions } from 'payload/config'
-import payload, { Payload } from 'payload'
+import type { InitOptions } from 'payload'
+import { getPayload, Payload } from 'payload'
 import nodemailer from 'nodemailer'
+import payloadConfig from '../config/payload.config'
 
 dotenv.config({
-    path: path.resolve(__dirname, '../../.env'),
+    path: path.resolve(process.cwd(), '.env'),
 })
 
 const transporter = nodemailer.createTransport({
@@ -43,15 +44,9 @@ export const getPayloadClient = async ({
     }
 
     if (!cached.promise) {
-        cached.promise = payload.init({
-            email: {
-                transport: transporter,
-                fromAddress: 'onboarding@resend.dev',
-                fromName: 'Salaried Ecommerce',
-            },
-            secret: process.env.PAYLOAD_SECRET,
-            local: initOptions?.express ? false : true,
-            ...(initOptions || {}),
+        cached.promise = getPayload({
+            config: payloadConfig,
+            ...initOptions,
         })
     }
 

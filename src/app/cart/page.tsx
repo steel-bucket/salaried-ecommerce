@@ -50,7 +50,7 @@ const Page = () => {
         return result
     }
 
-    const { mutate: createCheckoutSession, isLoading } =
+    const { mutate: createCheckoutSession, isPending } =
         trpc.payment.createSession.useMutation({
             onSuccess: ({ url }) => {
                 console.log('Success ' + url + ' . . . . ')
@@ -248,7 +248,7 @@ const Page = () => {
                         </div>
                         <div className="mt-8">
                             <Button
-                                disabled={items.length === 0 || isLoading}
+                                disabled={items.length === 0 || isPending}
                                 onClick={() => {
                                     console.log(productIds)
                                     createCheckoutSession({ productIds })
@@ -256,7 +256,7 @@ const Page = () => {
                                 className="w-full py-3 text-lg font-semibold bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition-colors"
                                 size="lg"
                             >
-                                {isLoading ? (
+                                {isPending ? (
                                     <Loader2 className="w-4 h-4 animate-spin mr-2 inline-block" />
                                 ) : null}
                                 Checkout

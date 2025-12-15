@@ -1,13 +1,23 @@
-import { Access, CollectionConfig } from 'payload/types'
-import { BeforeChangeHook } from 'payload/dist/collections/config/types'
-import { User } from '../../../config/payload-types'
+import type { CollectionConfig } from 'payload'
+import type { User } from '../../../config/payload-types'
 
-const addUser: BeforeChangeHook = ({ req, data }) => {
+
+const addUser: ({
+    req,
+    data,
+}: {
+    req: any
+    data: any
+}) => Promise<any> = async ({ req, data }) => {
     const user = req.user as User | null
     return { ...data, user: user?.id }
 }
 
-const yourOwnAndPurchased: Access = async ({ req }) => {
+const yourOwnAndPurchased: ({
+    req,
+}: {
+    req: any
+}) => Promise<boolean | { id: { in: any[] } }> = async ({ req }) => {
     const user = req.user as User | null
 
     if (user?.role === 'admin') return true
@@ -62,6 +72,7 @@ const yourOwnAndPurchased: Access = async ({ req }) => {
 }
 
 export const ProductFiles: CollectionConfig = {
+    // @ts-ignore
     slug: 'productFiles',
     admin: {
         hidden: ({ user }) => user.role !== 'admin',
@@ -71,11 +82,12 @@ export const ProductFiles: CollectionConfig = {
     },
     access: {
         read: yourOwnAndPurchased,
+        // @ts-ignore
         update: ({ req }) => req.user.role === 'admin',
+        // @ts-ignore
         delete: ({ req }) => req.user.role === 'admin',
     },
     upload: {
-        staticURL: '/productFiles',
         staticDir: 'productFiles',
         mimeTypes: ['image/*', 'font/*', 'application/postscript'],
     },

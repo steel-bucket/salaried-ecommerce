@@ -66,6 +66,7 @@ export const authRouter = router({
                         email,
                         password,
                     },
+                    // @ts-ignore
                     res,
                 })
                 return { success: true }

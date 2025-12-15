@@ -50,16 +50,9 @@ const nextConfig = {
                 'node_modules/@payloadcms'
             )
         }
-        config.resolve.alias = {
-            ...config.resolve.alias,
-            '@': path.resolve(__dirname, 'src'),
-        };
 
         return config
     },
-
-    // reactStrictMode: true,
-    // swcMinify: true,
-    // output: 'standalone',
 }
+
 export default nextConfig

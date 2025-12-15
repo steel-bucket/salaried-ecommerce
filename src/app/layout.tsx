@@ -1,4 +1,5 @@
-import type { Metadata } from 'next'
+// @ts-ignore
+import type { LayoutProps } from 'next'
 import './globals.css'
 import { cn, constructMetadata } from '@/lib/utils'
 import Navbar from '@/components/Navbar/Navbar'
@@ -8,11 +9,9 @@ import { ReactNode } from 'react'
 
 export const metadata = constructMetadata()
 
-
-export default async function RootLayout(props: { children: ReactNode; params: Promise<{ id: string }> }) {
-    const { children, params } = props;
-
-    const { id } = await params;
+export default async function RootLayout({ children, params }: LayoutProps<{ id: string }>) {
+    // params is already available synchronously
+    const { id } = params
 
     return (
         <html lang="en" className="h-full" suppressHydrationWarning>

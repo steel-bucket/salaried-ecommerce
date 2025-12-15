@@ -28,7 +28,7 @@ const Page = () => {
 
     const router = useRouter()
 
-    const { mutate, isLoading } = trpc.auth.createPayloadUser.useMutation({
+    const { mutate, isPending } = trpc.auth.createPayloadUser.useMutation({
         onError: (err) => {
             if (err.data?.code === 'CONFLICT') {
                 toast.error('This email is already in use.')
@@ -100,8 +100,8 @@ const Page = () => {
                                     </p>
                                 )}
                             </div>
-                            <Button className="bg-fuchsia-600" disabled={isLoading}>
-                                {isLoading ? (
+                            <Button className="bg-fuchsia-600" disabled={isPending}>
+                                {isPending ? (
                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                 ) : (
                                     'Sign up'

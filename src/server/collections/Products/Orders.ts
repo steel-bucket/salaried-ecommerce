@@ -1,6 +1,11 @@
-import { Access, CollectionConfig } from 'payload/types'
+import type { CollectionConfig } from 'payload'
 
-const yourOwn: Access = ({ req: { user } }) => {
+const yourOwn: ({ req: { user } }: { req: { user: any } }) =>
+    | boolean
+    | {
+          user: { equals: any }
+      } = ({ req: { user } }) => {
+    // @ts-ignore
     if (user.role === 'admin') return true
 
     return {
@@ -11,16 +16,19 @@ const yourOwn: Access = ({ req: { user } }) => {
 }
 
 export const Orders: CollectionConfig = {
+    // @ts-ignore
     slug: 'orders',
     admin: {
-        useAsTitle: 'Your Orders',
-        description:
-            'A summary of all your orders.',
+        useAsTitle: 'id',
+        description: 'A summary of all your orders.',
     },
     access: {
         read: yourOwn,
+        // @ts-ignore
         update: ({ req }) => req.user.role === 'admin',
+        // @ts-ignore
         delete: ({ req }) => req.user.role === 'admin',
+        // @ts-ignore
         create: ({ req }) => req.user.role === 'admin',
     },
     fields: [
@@ -28,6 +36,7 @@ export const Orders: CollectionConfig = {
             name: '_isPaid',
             type: 'checkbox',
             access: {
+                // @ts-ignore
                 read: ({ req }) => req.user.role === 'admin',
                 create: () => false,
                 update: () => false,

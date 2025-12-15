@@ -32,7 +32,7 @@ const Page = () => {
         resolver: zodResolver(AuthCredentialsValidator),
     })
 
-    const { mutate: login, isLoading } = trpc.auth.login.useMutation({
+    const { mutate: login, isPending } = trpc.auth.login.useMutation({
         onSuccess: () => {
             toast.success("Yayyyy...... You're Logged In")
             router.refresh()
@@ -122,9 +122,9 @@ const Page = () => {
                             </div>
                             <Button
                                 className="bg-fuchsia-600"
-                                disabled={isLoading}
+                                disabled={isPending}
                             >
-                                {isLoading ? (
+                                {isPending ? (
                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                 ) : (
                                     'Sign in'
@@ -160,7 +160,7 @@ const Page = () => {
                     <Button
                         onClick={ContinueAsCustomer}
                         variant="secondary"
-                        disabled={isLoading}
+                        disabled={isPending}
                     >
                         Continue as Customer
                     </Button>
@@ -168,7 +168,7 @@ const Page = () => {
                     <Button
                         onClick={ContinueAsSeller}
                         variant="secondary"
-                        disabled={isLoading}
+                        disabled={isPending}
                     >
                         Continue as Seller
                     </Button>

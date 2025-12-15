@@ -3,8 +3,8 @@ import { privateProcedure, router } from '../trpc'
 import { TRPCError } from '@trpc/server'
 import { getPayloadClient } from '../../getpayload'
 import { stripe } from '../../../lib/stripe'
-import type Stripe from 'stripe'
-import { Product } from '@/config/payload-types'
+import Stripe from 'stripe'
+import { Product } from '../../../config/payload-types'
 
 export const paymentrouter = router({
     createSession: privateProcedure
